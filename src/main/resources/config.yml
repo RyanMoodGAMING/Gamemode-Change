@@ -36,7 +36,7 @@ has_other_players_perm:
   # Do you want you can also do this to other players to be enabled or disabled?
   enabled: false
   # The message that is displayed when a player changes their own gamemode, if enabled.
-  message: "&7&l(!) &7You can change other player's gamemode's &3%command%"
+  message: "&7&l(!) &7You can change other player's gamemode's."
 
 death_change:
   # Toggle if your gamemode gets changed when you/a player dies.
