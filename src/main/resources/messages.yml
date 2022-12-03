@@ -1,0 +1,33 @@
+# Gamemode Change Messages File
+# All messages can use colour codes.
+# All messages support PlaceholderAPI.
+
+# This is the message that comes up when you haven't got permission to do what you are trying to do.
+# Use %perm% to get the permission for the action they are attempting to do.
+noPerm: "&c[!] You do not have permissions to do that. You need &b%perm%&c."
+
+# This message comes up when you have changed your gamemode.
+# Use %gamemode% for the new gamemode.
+changedGM: "&a[!] Your gamemode has been changed to &b%gamemode%&a!"
+
+# This is the message that comes up when you have changed someone else's gamemode.
+# Use %gamemode% for the new gamemode.
+# Use %target% to show the targets name.
+changedOther: "&a[!] You have changed &b%target%&a\'s gamemode to &b%gamemode%&a."
+
+# You can change what the %gamemode% results could be.
+creative: "CREATIVE"
+survival: "SURVIVAL"
+adventure: "ADVENTURE"
+spectator: "SPECTATOR"
+
+# This is the error message that will be displayed when somoene tries to go into creative mode
+# without the bypass anti-creative permission. (MUST BE ENABLED IN config.yml)
+# Use %perm% for the anti-creative bypass permission.
+antiCreativeError: "&c[!] You do not have permission to go into creative mode. You need the bypass permission (&b%perm%&c)."
+
+# This is the message that will be sent when you have gamemode change's notification feature enabled.
+# Use %player% to display the player name.
+# Use %gamemode% to display the new gamemode.
+notify: "&c[!] &b%player% &chas just changed there gamemode to &b%gamemode%&c."
+

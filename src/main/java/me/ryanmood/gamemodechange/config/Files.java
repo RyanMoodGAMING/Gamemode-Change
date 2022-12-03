@@ -22,6 +22,9 @@ public class Files {
     private static File permsFile;
     private static FileConfiguration permsConfig;
 
+    private static File messagesFile;
+    private static FileConfiguration messagesConfig;
+
     public static void loadFiles(GamemodeChange gamemodeChange) {
         if (!gamemodeChange.getDataFolder().exists()) {
             gamemodeChange.getDataFolder().mkdirs();
@@ -42,6 +45,13 @@ public class Files {
         permsConfig = YamlConfiguration.loadConfiguration(permsFile);
 
         Perms.loadConfig();
+
+        if (!messagesFile.exists()) {
+            gamemodeChange.saveResource("messages.yml", false);
+        }
+        messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
+
+        Messages.loadConfig();
     }
 
         public static FileConfiguration getConfig() {
@@ -52,9 +62,15 @@ public class Files {
             return permsConfig;
         }
 
+        public static FileConfiguration getMessagesConfig() {
+            return messagesConfig;
+        }
+
         public static void saveFiles() {
             try {
+                config.save(configFile);
                 permsConfig.save(permsFile);
+                messagesConfig.save(messagesFile);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -76,6 +92,14 @@ public class Files {
                 e.printStackTrace();
             }
             Perms.loadConfig();
+
+            messagesFile = new File(gamemodeChange.getDataFolder(), "messages.yml");
+            try {
+                messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Messages.loadConfig();
         }
 
 }
