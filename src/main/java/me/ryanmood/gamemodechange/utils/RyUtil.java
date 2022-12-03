@@ -52,10 +52,14 @@ public class RyUtil {
         }
     }
 
-    public static void sendBroadcastPerm(Player player, @Nullable String perm, String message) {
+    public static void sendBroadcast(Player player, @Nullable String perm, String message) {
         if (perm != null) {
             // If perm isn't null
-            Bukkit.broadcast(translate(player, message), perm);
+            for (Player target : Bukkit.getOnlinePlayers()) {
+                if (target.hasPermission(perm)) {
+                    target.sendMessage(message);
+                }
+            }
         } else {
             // If perm is null
             Bukkit.broadcastMessage(translate(player, message));
