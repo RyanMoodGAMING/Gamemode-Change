@@ -24,6 +24,10 @@ others: 'gmchange.others'
 bypass:
   antiCreative: "gmchange.bypass.anticreative"
   death: "gmchange.bypass.death"
+  notify: "gmchange.bypass.notify"
+  joinChange: "gmchange.bypass.join"
 
-# Permission to receive Gamemode change notifications.
-notify: 'gmchange.notify'
+# Permission to receive gamemode change notifications.
+notify:
+  main: "gmchange.notify"
+  antiCreative: "gmchange.notify.antiCreative"
