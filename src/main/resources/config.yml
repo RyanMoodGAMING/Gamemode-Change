@@ -12,6 +12,7 @@ antiCreative:
   # without the bypass anti-creative permission.
   # Use %perm% for the anti-creative bypass permission.
   errorMSG: "&c[!] You do not have permission ot go into creative mode. You need the bypass permission (&b%perm%&c)."
+  notifyMSG: "&c[!] &b%player% &chas been blocked from going into creative."
 
 notify:
   # Do you want the notification feature of a gamemode change to enabled or disabled?

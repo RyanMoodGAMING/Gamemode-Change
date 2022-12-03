@@ -15,18 +15,20 @@ public class Messages {
     public static String SPECTATOR;
     public static String ANTI_CREATIVE_ERROR;
     public static String NOTIFY;
+    public static String ANTI_CREATIVE_NOTIFY;
 
     public static void loadConfig() {
 
         NO_PERMISSION = Files.getMessagesConfig().getString("noPerm");
-        CHANGED_GM = Files.getConfig().getString("changedGM");
-        CHANGED_OTHER = Files.getConfig().getString("changedOther");
-        CREATIVE = Files.getConfig().getString("creative");
-        SURVIVAL = Files.getConfig().getString("survival");
-        ADVENTURE = Files.getConfig().getString("ADVENTURE");
-        SPECTATOR = Files.getConfig().getString("SPECTATOR");
-        ANTI_CREATIVE_ERROR = Files.getConfig().getString("antiCreativeError");
-        NOTIFY = Files.getConfig().getString("notify");
+        CHANGED_GM = Files.getMessagesConfig().getString("changedGM");
+        CHANGED_OTHER = Files.getMessagesConfig().getString("changedOther");
+        CREATIVE = Files.getMessagesConfig().getString("creative");
+        SURVIVAL = Files.getMessagesConfig().getString("survival");
+        ADVENTURE = Files.getMessagesConfig().getString("adventure");
+        SPECTATOR = Files.getMessagesConfig().getString("spectator");
+        ANTI_CREATIVE_ERROR = Files.getMessagesConfig().getString("antiCreativeError");
+        NOTIFY = Files.getMessagesConfig().getString("notify.main");
+        ANTI_CREATIVE_NOTIFY = Files.getMessagesConfig().getString("notify.antiCreative");
 
     }
 

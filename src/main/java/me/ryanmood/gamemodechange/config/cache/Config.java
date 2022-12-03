@@ -40,6 +40,7 @@ public class Config {
     public static Boolean ANTI_CREATIVE_ENABLED;
     public static Boolean ANTI_CREATIVE_BLOCK_OP;
     public static String ANTI_CREATIVE_ERROR;
+    public static String ANTI_CREATIVE_NOTIFY;
 
     // Notify
 
@@ -76,6 +77,7 @@ public class Config {
         ANTI_CREATIVE_ENABLED = Files.getConfig().getBoolean("antiCreative.enabled");
         ANTI_CREATIVE_BLOCK_OP = Files.getConfig().getBoolean("antiCreative.blockOP");
         ANTI_CREATIVE_ERROR = Files.getConfig().getString("antiCreative.errorMSG");
+        ANTI_CREATIVE_NOTIFY = Files.getConfig().getString("antiCreative.notifyMSG");
 
         // Notify
 

@@ -29,5 +29,7 @@ antiCreativeError: "&c[!] You do not have permission to go into creative mode. Y
 # This is the message that will be sent when you have gamemode change's notification feature enabled.
 # Use %player% to display the player name.
 # Use %gamemode% to display the new gamemode.
-notify: "&c[!] &b%player% &chas just changed there gamemode to &b%gamemode%&c."
+notify:
+  main: "&c[!] &b%player% &chas just changed there gamemode to &b%gamemode%&c."
+  antiCreative: "&c[!] &b%player% &chas been blocked from going into creative."
 
