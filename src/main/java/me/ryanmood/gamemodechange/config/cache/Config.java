@@ -46,6 +46,10 @@ public class Config {
 
     public static Boolean NOTIFY_ENABLED;
     public static String NOTIFY_MESSAGE;
+    public static Boolean NOTIFY_CREATIVE;
+    public static Boolean NOTIFY_SURVIVAL;
+    public static Boolean NOTIFY_ADVENTURE;
+    public static Boolean NOTIFY_SPECTATOR;
 
     public static void loadConfig() {
 
@@ -83,6 +87,10 @@ public class Config {
 
         NOTIFY_ENABLED = Files.getConfig().getBoolean("notify.enabled");
         NOTIFY_MESSAGE = Files.getConfig().getString("notify.message");
+        NOTIFY_CREATIVE = Files.getConfig().getBoolean("notify.gamemodes.creative");
+        NOTIFY_SURVIVAL = Files.getConfig().getBoolean("notify.gamemodes.survival");
+        NOTIFY_SPECTATOR = Files.getConfig().getBoolean("notify.gamemodes.spectator");
+        NOTIFY_ADVENTURE = Files.getConfig().getBoolean("notify.gamemodes.adventure");
 
     }
 

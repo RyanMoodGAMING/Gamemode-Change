@@ -21,6 +21,12 @@ notify:
   # Use %player% to display the player name.
   # Use %gamemode% to display the new gamemode.
   message: '&c&l(!) &6%player% &ahas just changed there gamemode to &6%gamemode%'
+  # Should you get sent notifications for the different gamemodes?
+  gamemodes:
+    creative: true
+    survival: true
+    adventure: true
+    spectator: true
 
 deathChange:
   # Toggle if your gamemode gets changed when you/a player dies.
