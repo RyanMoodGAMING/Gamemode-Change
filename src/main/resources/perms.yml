@@ -20,8 +20,10 @@ spectator: 'gmchange.spectator'
 # Change other player's gamemode permission
 others: 'gmchange.others'
 
-# Permission to bypass the anti-creative mode.
-anti_creative_bypass: 'gmchange.creative.bypass'
+# Permission to bypass features.
+bypass:
+  antiCreative: "gmchange.bypass.anticreative"
+  death: "gmchange.bypass.death"
 
 # Permission to receive Gamemode change notifications.
 notify: 'gmchange.notify'

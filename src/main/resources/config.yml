@@ -1,29 +1,55 @@
 # Configuration file for Gamemode Change.
 # For support, please join my discord @ https://discord.gg/6QNEGPK3Fb
-# All messages support PlaceholderAPI & Colour Codes.
+# All messages can use colour codes.
+# All messages support PlaceholderAPI.
 
-# Game mode Change message - The message that shows you/user the game mode they turned too.
-# Use %gamemode% to get the gamemode they have changed too.
-gm_changed_msg: '&a&l(!) &aYour game mode has been changed to &b%gamemode%&a.'
+antiCreative:
+  # Do you want to make it so people can't access gamemode creative unless they have the bypass permission?
+  enabled: false
+  # Do you want to block OP'ed players from changing to gamemode creative?
+  blockOp: false
+  # This is the error message that will be displayed when somoene tries to go into creative mode
+  # without the bypass anti-creative permission.
+  # Use %perm% for the anti-creative bypass permission.
+  errorMSG: "&c[!] You do not have permission ot go into creative mode. You need the bypass permission (&b%perm%&c)."
 
-# No permission Message, the message that comes up when you/users don't have permission to run the command.
-# Use %perm% to get the permission in the spot (optional)
-no_permission_msg: '&c&l(!) &cYou do not have permission to do this. You need &9%perm%'
+notify:
+  # Do you want the notification feature of a gamemode change to enabled or disabled?
+  enabled: false
+  # This is the message that will be sent when you have gamemode change's notification feature enabled.
+  # Use %player% to display the player name.
+  # Use %gamemode% to display the new gamemode.
+  message: '&c&l(!) &6%player% &ahas just changed there gamemode to &6%gamemode%'
 
-# Gamemode messages. If you want the word Creative to be in Caps or not
-# If you use color codes in gmchange_msg they will be ignored for the gamemode and after the gamemode.
+deathChange:
+  # Toggle if your gamemode gets changed when you/a player dies.
+  enabled: false
+  # The gamemode you want players to change into if a player dies.
+  # deathToggle must be set to true.
+  # 0 = Survival | 1 = Creative | 2 = Adventure | 3 = Spectator
+  gamemode: 2
+
+# This is the message that comes up when you haven't got permission to do what you are trying to do.
+# Use %perm% to get the permission in the spot (optional).
+noPerm: "&c[!] You do not have permissions to do that. You need &b%perm%&c."
+
+# This message comes up when you have changed your gamemode.
+# Use %gamemode% for the new gamemode.
+gmChanged: "&a[!] Your gamemode has been changed to &b%gamemode%&a!"
+
+# This is the message that comes up when you have changed someone else's gamemode.
+# Use %gamemode% for the new gamemode.
+# Use %target% to show the targets name.
+otherChanged: "&a[!] You have changed &b%target%&a\'s gamemode to &b%gamemode%&a."
+
+# You can change what the %gamemode% results could be.
 creative: 'CREATIVE'
 survival: 'SURVIVAL'
 adventure: 'ADVENTURE'
 spectator: 'SPECTATOR'
 
-# Other Player Message, the message that comes up when you change other player's gamemode.
-# Use %gamemode% to get the player's gamemode that has been changed.
-# Use %target% to display the target's username.
-other_player_msg: '&a&l(!) &aYou have changed &9%target% &ato the gamemode &b%gamemode%'
-
-# Player Not Found Error Message
-player_not_found_msg: '&c&l(!) &cThat player is not found.'
+# Player not found error message.
+not_found_msg: "&c&l(!) &cThat player is not found."
 
 # Invalid Usage Error Message
 # Use %usage% for the command and args.
@@ -37,27 +63,3 @@ has_other_players_perm:
   enabled: false
   # The message that is displayed when a player changes their own gamemode, if enabled.
   message: "&7&l(!) &7You can change other player's gamemode's."
-
-death_change:
-  # Toggle if your gamemode gets changed when you/a player dies.
-  enabled: false
-  # The gamemode you want players to change into if a player dies.
-  # deathToggle must be set to true.
-  # 0 = Survival | 1 = Creative | 2 = Adventure | 3 = Spectator
-  gamemode: 2
-
-anti_creative:
-  # Do you want to make it so people can't access gamemode creative unless they have the bypass permission?
-  enabled: false
-  # Do you want to block OP'ed players from changing to gamemode creative?
-  block_op: false
-  # The error message to players trying to go into creative without bypass permission.
-  error_msg: '&c&l(!) &cYou do not have permission to go into creative &cmode. You need the &cbypass permission.'
-
-notify:
-  # Do you want the notification feature of a gamemode change to enabled or disabled?
-  enabled: false
-  # The message that should be displayed if you have gamemode change notification enabled?
-  # Use %target% to display the player name.
-  # Use %gamemode% to display the new gamemode.
-  message: '&c&l(!) &6%player% &ahas just changed there gamemode to &6%gamemode%'
