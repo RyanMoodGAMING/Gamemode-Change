@@ -46,10 +46,31 @@ public class ChangeGamemodeListener implements Listener {
         GameMode newGamemode = event.getNewGameMode();
 
         if (Config.NOTIFY_ENABLED && !player.hasPermission(Perms.NOTIFY_BYPASS)) {
-            RyUtil.sendBroadcast(player, Perms.NOTIFY,
-                    Config.NOTIFY_MESSAGE
-                            .replace("%target%", player.getName())
-                            .replace("%gamemode%", RyUtil.gamemodeToString(newGamemode)));
+            if (newGamemode == GameMode.CREATIVE
+                    && Config.NOTIFY_CREATIVE) {
+                RyUtil.sendBroadcast(player, Perms.NOTIFY,
+                        Config.NOTIFY_MESSAGE
+                                .replace("%target%", player.getName())
+                                .replace("%gamemode%", RyUtil.gamemodeToString(newGamemode)));
+            } else if (newGamemode == GameMode.SURVIVAL
+                    && Config.NOTIFY_SURVIVAL) {
+                RyUtil.sendBroadcast(player, Perms.NOTIFY,
+                        Config.NOTIFY_MESSAGE
+                                .replace("%target%", player.getName())
+                                .replace("%gamemode%", RyUtil.gamemodeToString(newGamemode)));
+            } else if (newGamemode == GameMode.ADVENTURE
+                    && Config.NOTIFY_ADVENTURE) {
+                RyUtil.sendBroadcast(player, Perms.NOTIFY,
+                        Config.NOTIFY_MESSAGE
+                                .replace("%target%", player.getName())
+                                .replace("%gamemode%", RyUtil.gamemodeToString(newGamemode)));
+            } else if (newGamemode == GameMode.SPECTATOR
+                    && Config.NOTIFY_SPECTATOR) {
+                RyUtil.sendBroadcast(player, Perms.NOTIFY,
+                        Config.NOTIFY_MESSAGE
+                                .replace("%target%", player.getName())
+                                .replace("%gamemode%", RyUtil.gamemodeToString(newGamemode)));
+            }
         }
     }
 
