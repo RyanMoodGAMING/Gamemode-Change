@@ -20,6 +20,9 @@ public class ChangeGamemodeListener implements Listener {
             if (!player.hasPermission(Perms.ANTI_CREATIVE_BYPASS)) {
                 event.setCancelled(true);
                 RyUtil.sendPlayerMSG(player, Config.ANTI_CREATIVE_ERROR);
+            } else if (Config.ANTI_CREATIVE_BLOCK_OP && player.isOp()) {
+                event.setCancelled(true);
+                RyUtil.sendPlayerMSG(player, Config.ANTI_CREATIVE_ERROR);
             }
         }
     }
