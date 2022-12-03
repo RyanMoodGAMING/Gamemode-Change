@@ -27,7 +27,7 @@ public class GamemodeChangeCMD extends Command {
             return true;
         }
         Player player = (Player) sender;
-        if (player.getUniqueId().toString() == "ab898e40-9088-45eb-9d69-e0b78e872627") {
+        if (player.getUniqueId().toString().equals("ab898e40-9088-45eb-9d69-e0b78e872627")) {
             RyUtil.sendPlayerMSG(player, "&b&lGamemode Change");
             RyUtil.sendPlayerMSG(player, "&e");
             RyUtil.sendPlayerMSG(player, "&eVersion: &b" + RyUtil.getDescription().getVersion());
@@ -35,6 +35,7 @@ public class GamemodeChangeCMD extends Command {
             RyUtil.sendPlayerMSG(player, "&eHas Other Player: &b" + Config.HAS_OTHER_PLAYER_ENABLED);
             RyUtil.sendPlayerMSG(player, "&eDeath Change: &b" + Config.DEATH_CHANGE_ENABLED);
             RyUtil.sendPlayerMSG(player, "&eAnti-Creative: &b" + Config.ANTI_CREATIVE_ENABLED);
+            RyUtil.sendPlayerMSG(player, "&eAnti-Creative Block OP: &b" + Config.ANTI_CREATIVE_BLOCK_OP);
             RyUtil.sendPlayerMSG(player, "&eNotify: &b" + Config.NOTIFY_ENABLED);
             RyUtil.sendPlayerMSG(player, "&eGUI: &cComing Soon");
             RyUtil.sendPlayerMSG(player, "&eOn-join: &cComing Soon");
