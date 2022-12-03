@@ -49,16 +49,16 @@ adventure: 'ADVENTURE'
 spectator: 'SPECTATOR'
 
 # Player not found error message.
-not_found_msg: "&c&l(!) &cThat player is not found."
+notFoundMSG: "&c&l(!) &cThat player is not found."
 
 # Invalid Usage Error Message
 # Use %usage% for the command and args.
-invalid_usage_msg: '&c&l(!) &cInvalid usage please use: %usage%'
+invalidUsageMSG: '&c&l(!) &cInvalid usage please use: %usage%'
 
 # Invalid Gamemode Error Message
-invalid_gamemode_msg: '&c&l(!) &cInvalid gamemode. Gamemodes: Creative; Survival; Adventure; or Spectator.'
+invalidGMMSG: '&c&l(!) &cInvalid gamemode. Gamemodes: Creative; Survival; Adventure; or Spectator.'
 
-has_other_players_perm:
+hasOtherPermsMSG:
   # Do you want you can also do this to other players to be enabled or disabled?
   enabled: false
   # The message that is displayed when a player changes their own gamemode, if enabled.
