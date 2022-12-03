@@ -20,7 +20,7 @@ spectator: 'SPECTATOR'
 # Other Player Message, the message that comes up when you change other player's gamemode.
 # Use %gamemode% to get the player's gamemode that has been changed.
 # Use %target% to display the target's username.
-other_player_msg: '&a&l(!) &aYou have changed &9%player% &ato the gamemode &b%gamemode%'
+other_player_msg: '&a&l(!) &aYou have changed &9%target% &ato the gamemode &b%gamemode%'
 
 # Player Not Found Error Message
 player_not_found_msg: '&c&l(!) &cThat player is not found.'
