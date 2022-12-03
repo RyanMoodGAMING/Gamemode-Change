@@ -27,10 +27,12 @@ public class ChangeGamemodeListener implements Listener {
         if (Config.ANTI_CREATIVE_ENABLED && newGamemode == GameMode.CREATIVE) {
             if (!player.hasPermission(Perms.ANTI_CREATIVE_BYPASS)) {
                 event.setCancelled(true);
-                RyUtil.sendPlayerMSG(player, Config.ANTI_CREATIVE_ERROR);
+                RyUtil.sendPlayerMSG(player, Config.ANTI_CREATIVE_ERROR
+                        .replace("%perm%", Perms.ANTI_CREATIVE_BYPASS));
             } else if (Config.ANTI_CREATIVE_BLOCK_OP && player.isOp()) {
                 event.setCancelled(true);
-                RyUtil.sendPlayerMSG(player, Config.ANTI_CREATIVE_ERROR);
+                RyUtil.sendPlayerMSG(player, Config.ANTI_CREATIVE_ERROR
+                        .replace("%perm%", Perms.ANTI_CREATIVE_BYPASS));
             }
         }
     }
