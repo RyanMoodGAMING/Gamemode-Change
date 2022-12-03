@@ -22,7 +22,7 @@ public class AdventureCMD extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String s, @NotNull String[] args) {
+    public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args) {
         if (!(sender instanceof Player)) {
             RyUtil.sendConsoleMSG(true, "&c&l(!) &cThis command must be ran by a player.");
             return true;
