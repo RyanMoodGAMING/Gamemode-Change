@@ -50,32 +50,32 @@ public class Config {
 
         // MESSAGES
 
-        GAMEMODE_CHANGED = Files.getConfig().getString("gm_changed_msg");
-        NO_PERMISSION = Files.getConfig().getString("no_permission_msg");
-        CREATIVE = Files.getConfig().getString("CREATIVE");
-        SURVIVAL = Files.getConfig().getString("SURVIVAL");
-        ADVENTURE = Files.getConfig().getString("ADVENTURE");
-        SPECTATOR = Files.getConfig().getString("SPECTATOR");
-        OTHER_PLAYER = Files.getConfig().getString("other_player_msg");
-        PLAYER_NOT_FOUND = Files.getConfig().getString("player_not_found_msg");
-        INVALID_USAGE = Files.getConfig().getString("invalid_usage_msg");
-        INVALID_GAMEMODE = Files.getConfig().getString("invalid_gamemode_msg");
+        GAMEMODE_CHANGED = Files.getConfig().getString("gmChanged");
+        NO_PERMISSION = Files.getConfig().getString("noPerm");
+        CREATIVE = Files.getConfig().getString("creative");
+        SURVIVAL = Files.getConfig().getString("survival");
+        ADVENTURE = Files.getConfig().getString("adventure");
+        SPECTATOR = Files.getConfig().getString("spectator");
+        OTHER_PLAYER = Files.getConfig().getString("otherChanged");
+        PLAYER_NOT_FOUND = Files.getConfig().getString("notFoundMSG");
+        INVALID_USAGE = Files.getConfig().getString("invalidUsageMSG");
+        INVALID_GAMEMODE = Files.getConfig().getString("invalidGMMSG");
 
         // Has Other Player Perm Message
 
-        HAS_OTHER_PLAYER_ENABLED = Files.getConfig().getBoolean("has_other_players_perm.enabled");
-        HAS_OTHER_PLAYER_MSG = Files.getConfig().getString("has_other_players_perm.message");
+        HAS_OTHER_PLAYER_ENABLED = Files.getConfig().getBoolean("hasOtherPermsMSG.enabled");
+        HAS_OTHER_PLAYER_MSG = Files.getConfig().getString("hasOtherPermsMSG.message");
 
         // Death Change
 
-        DEATH_CHANGE_ENABLED = Files.getConfig().getBoolean("death_change.enabled");
-        DEATH_CHANGE_GAMEMODE = Files.getConfig().getInt("death_change.gamemode");
+        DEATH_CHANGE_ENABLED = Files.getConfig().getBoolean("deathChange.enabled");
+        DEATH_CHANGE_GAMEMODE = Files.getConfig().getInt("deathChange.gamemode");
 
         // Anti-Creative
 
-        ANTI_CREATIVE_ENABLED = Files.getConfig().getBoolean("anti_creative.enabled");
-        ANTI_CREATIVE_BLOCK_OP = Files.getConfig().getBoolean("anti_creative.block_op");
-        ANTI_CREATIVE_ERROR = Files.getConfig().getString("anti_creative.error_msg");
+        ANTI_CREATIVE_ENABLED = Files.getConfig().getBoolean("antiCreative.enabled");
+        ANTI_CREATIVE_BLOCK_OP = Files.getConfig().getBoolean("antiCreative.blockOP");
+        ANTI_CREATIVE_ERROR = Files.getConfig().getString("antiCreative.errorMSG");
 
         // Notify
 
