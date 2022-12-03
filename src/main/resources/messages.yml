@@ -21,7 +21,20 @@ survival: "SURVIVAL"
 adventure: "ADVENTURE"
 spectator: "SPECTATOR"
 
-# This is the error message that will be displayed when somoene tries to go into creative mode
+# This is the error message that will be displayed when a player isn't found.
+invalidPlayer: "&c[!] The player provided is not found."
+
+# This is the error message that will be displayed when a command is used incorrectly.
+# Use %usage% to display the command and arguments.
+invalidUsage: "&c[!] Valid usage: &b%usage%"
+
+# This is the error message that will be displayed when an invalid gamemode is provided.
+invalidGM: "&c[!] Invalid gamemode. Gamemodes: Creative, Survival, Adventure or Spectator."
+
+# This is the message that is displayed if hasOtherPermsMSG is enabled.
+othersMSG: "&7[!] You can change other players gamemodes."
+
+# This is the error message that will be displayed when someoene tries to go into creative mode
 # without the bypass anti-creative permission. (MUST BE ENABLED IN config.yml)
 # Use %perm% for the anti-creative bypass permission.
 antiCreativeError: "&c[!] You do not have permission to go into creative mode. You need the bypass permission (&b%perm%&c)."
