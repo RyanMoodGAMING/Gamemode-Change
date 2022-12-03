@@ -49,6 +49,8 @@ death_change:
 anti_creative:
   # Do you want to make it so people can't access gamemode creative unless they have the bypass permission?
   enabled: false
+  # Do you want to block OP'ed players from changing to gamemode creative?
+  block_op: false
   # The error message to players trying to go into creative without bypass permission.
   error_msg: '&c&l(!) &cYou do not have permission to go into creative &cmode. You need the &cbypass permission.'
 
