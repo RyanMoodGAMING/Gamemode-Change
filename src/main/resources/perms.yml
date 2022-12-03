@@ -1,0 +1,27 @@
+# Permissions configuration file for Gamemode Change.
+# For support, please join my discord @ https://discord.gg/6QNEGPK3Fb
+# To give player's permissions, you need a permission handler.
+
+# Permission to be able to do the commands.
+gamemode: 'gmchange.gamemode'
+
+# Creative gamemode permission
+creative: 'gmchange.creative'
+
+# Survival gamemode permission
+survival: 'gmchange.survival'
+
+# Adventure gamemode permission
+adventure: 'gmchange.adventure'
+
+# Spectator gamemode permission
+spectator: 'gmchange.spectator'
+
+# Change other player's gamemode permission
+others: 'gmchange.others'
+
+# Permission to bypass the anti-creative mode.
+anti_creative_bypass: 'gmchange.creative.bypass'
+
+# Permission to receive Gamemode change notifications.
+notify: 'gmchange.notify'
