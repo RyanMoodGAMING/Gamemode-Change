@@ -1,6 +1,7 @@
 package me.ryanmood.gamemodechange.listeners;
 
 import me.ryanmood.gamemodechange.config.cache.Config;
+import me.ryanmood.gamemodechange.config.cache.Perms;
 import me.ryanmood.gamemodechange.utils.RyUtil;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -25,7 +26,7 @@ public class DeathListener implements Listener {
         }
         Player player = event.getEntity();
 
-        if (Config.DEATH_CHANGE_ENABLED) {
+        if (Config.DEATH_CHANGE_ENABLED && !player.hasPermission(Perms.DEATH_BYPASS)) {
             player.setGameMode(RyUtil.intToGamemode(Config.DEATH_CHANGE_GAMEMODE));
         }
     }

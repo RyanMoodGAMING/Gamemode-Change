@@ -21,6 +21,7 @@ public class Perms {
     public static String SPECTATOR;
     public static String OTHERS;
     public static String ANTI_CREATIVE_BYPASS;
+    public static String DEATH_BYPASS;
     public static String NOTIFY;
     public static void loadConfig() {
 
@@ -32,7 +33,8 @@ public class Perms {
         ADVENTURE = Files.getPermsConfig().getString("adventure");
         SPECTATOR = Files.getPermsConfig().getString("spectator");
         OTHERS = Files.getPermsConfig().getString("others");
-        ANTI_CREATIVE_BYPASS = Files.getPermsConfig().getString("anti_creative_bypass");
+        ANTI_CREATIVE_BYPASS = Files.getPermsConfig().getString("bypass.antiCreative");
+        DEATH_BYPASS = Files.getPermsConfig().getString("bypass.death");
         NOTIFY = Files.getPermsConfig().getString("notify");
 
     }
