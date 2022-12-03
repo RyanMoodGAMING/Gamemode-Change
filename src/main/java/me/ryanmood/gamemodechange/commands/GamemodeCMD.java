@@ -92,6 +92,8 @@ public class GamemodeCMD extends Command {
             } else {
                 return changePlayer(player, GameMode.SPECTATOR);
             }
+        } else {
+            RyUtil.sendPlayerMSG(player, Config.INVALID_GAMEMODE);
         }
 
         return true;
