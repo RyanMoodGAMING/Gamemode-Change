@@ -21,7 +21,12 @@ public class CommandManager {
 
     public static void registerAll(){
         commands.addAll(Arrays.asList(
-                new GamemodeChangeCMD()
+                new GamemodeChangeCMD(),
+                new CreativeCMD(),
+                new SurvivalCMD(),
+                new AdventureCMD(),
+                new SpectatorCMD(),
+                new GamemodeCMD()
         ));
     }
 
