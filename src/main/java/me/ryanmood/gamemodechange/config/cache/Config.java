@@ -51,6 +51,11 @@ public class Config {
     public static Boolean NOTIFY_ADVENTURE;
     public static Boolean NOTIFY_SPECTATOR;
 
+    // JOIN CHANGE
+
+    public static boolean JOIN_CHANGE_ENABLED;
+    public static int JOIN_CHANGE_GAMEMODE;
+
     public static void loadConfig() {
 
         // MESSAGES
@@ -91,6 +96,11 @@ public class Config {
         NOTIFY_SURVIVAL = Files.getConfig().getBoolean("notify.gamemodes.survival");
         NOTIFY_SPECTATOR = Files.getConfig().getBoolean("notify.gamemodes.spectator");
         NOTIFY_ADVENTURE = Files.getConfig().getBoolean("notify.gamemodes.adventure");
+
+        // Join Change
+
+        JOIN_CHANGE_ENABLED = Files.getConfig().getBoolean("joinChange.enabled");
+        JOIN_CHANGE_GAMEMODE = Files.getConfig().getInt("joinChange.gamemode");
 
     }
 

@@ -3,6 +3,7 @@ package me.ryanmood.gamemodechange;
 import me.ryanmood.gamemodechange.config.Files;
 import me.ryanmood.gamemodechange.listeners.ChangeGamemodeListener;
 import me.ryanmood.gamemodechange.listeners.DeathListener;
+import me.ryanmood.gamemodechange.listeners.JoinListener;
 import me.ryanmood.gamemodechange.utils.CommandManager;
 import me.ryanmood.gamemodechange.utils.RyUtil;
 import org.bukkit.Bukkit;
@@ -46,6 +47,7 @@ public final class GamemodeChange extends JavaPlugin {
     private void loadListeners() {
         Bukkit.getPluginManager().registerEvents(new ChangeGamemodeListener(), this);
         Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
+        Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
     }
 
     public static GamemodeChange getInstance() {

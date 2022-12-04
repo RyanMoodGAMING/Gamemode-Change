@@ -3,6 +3,12 @@
 # All messages can use colour codes.
 # All messages support PlaceholderAPI.
 
+# Should your gamemode get updated on join to the server?
+joinChange:
+  enabled: false
+  # 0 = Survival | 1 = Creative | 2 = Adventure | 3 = Spectator
+  gamemode: 0
+
 antiCreative:
   # Do you want to make it so people can't access gamemode creative unless they have the bypass permission?
   enabled: false
