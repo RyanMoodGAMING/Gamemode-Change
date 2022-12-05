@@ -26,7 +26,7 @@ import javax.annotation.Nullable;
 
 public class RyUtil {
 
-    public static String consolePrefix = "&b&lGAMEMODE CHANGE ";
+    public static String consolePrefix = "&b&lGAMEMODE CHANGE &7» &f";
 
     public static String translate(@Nullable Player player, String message) {
         // If player isn't null & if PlaceholderAPI is on the server.
