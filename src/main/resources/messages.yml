@@ -44,5 +44,5 @@ antiCreativeError: "&c[!] You do not have permission to go into creative mode. Y
 # Use %gamemode% to display the new gamemode.
 notify:
   main: "&c[!] &b%player% &chas just changed there gamemode to &b%gamemode%&c."
-  antiCreative: "&c[!] &b%player% &chas been blocked from going into creative."
+  antiCreative: "&c[!] &b%player% &chas been blocked from going into creative. They have been kept as %gamemode%."
 

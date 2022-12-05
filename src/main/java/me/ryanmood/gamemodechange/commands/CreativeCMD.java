@@ -1,6 +1,7 @@
 package me.ryanmood.gamemodechange.commands;
 
 import me.ryanmood.gamemodechange.config.cache.Config;
+import me.ryanmood.gamemodechange.config.cache.Messages;
 import me.ryanmood.gamemodechange.config.cache.Perms;
 import me.ryanmood.gamemodechange.utils.RyUtil;
 import org.bukkit.Bukkit;
@@ -38,33 +39,33 @@ public class CreativeCMD extends Command {
 
         Player player = (Player) sender;
         if (!player.hasPermission(Perms.GAMEMODE) && !player.hasPermission(Perms.CREATIVE)) {
-            RyUtil.sendPlayerMSG(player, Config.NO_PERMISSION
-                    .replace("%perm%", Perms.GAMEMODE + " and " + Perms.CREATIVE));
+            RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
+                    .replace("%perm%", Perms.GAMEMODE + " & " + Perms.CREATIVE));
             return true;
         }
 
         if (args.length == 0) {
-            RyUtil.sendPlayerMSG(player, Config.GAMEMODE_CHANGED
-                    .replace("%gamemode%", Config.CREATIVE));
+            RyUtil.sendPlayerMSG(player, Messages.CHANGED_GM
+                    .replace("%gamemode%", Messages.CREATIVE));
             player.setGameMode(GameMode.CREATIVE);
             if (Config.HAS_OTHER_PLAYER_ENABLED) {
-                RyUtil.sendPlayerMSG(player, Config.HAS_OTHER_PLAYER_MSG);
+                RyUtil.sendPlayerMSG(player, Messages.CAN_CHANGE_OTHERS);
             }
             return true;
         } else if (args.length == 1) {
             if (!player.hasPermission(Perms.OTHERS)) {
-                RyUtil.sendPlayerMSG(player, Config.NO_PERMISSION
+                RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
                         .replace("%perm%", Perms.OTHERS));
                 return true;
             } else if (Bukkit.getPlayer(args[0]) == null) {
-                RyUtil.sendPlayerMSG(player, Config.PLAYER_NOT_FOUND);
+                RyUtil.sendPlayerMSG(player, Messages.INVALID_PLAYER);
                 return true;
             }
             Player target = Bukkit.getPlayer(args[0]);
             target.setGameMode(GameMode.CREATIVE);
-            RyUtil.sendPlayerMSG(player, Config.OTHER_PLAYER
+            RyUtil.sendPlayerMSG(player, Messages.CHANGED_OTHER
                     .replace("%target%", target.getName())
-                    .replace("%gamemode%", Config.CREATIVE));
+                    .replace("%gamemode%", Messages.CREATIVE));
             return true;
         }
 

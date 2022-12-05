@@ -7,7 +7,7 @@ For support please join my support discord @ https://discord.gg/6QNEGPK3Fb
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.ryanmood.gamemodechange.GamemodeChange;
-import me.ryanmood.gamemodechange.config.cache.Config;
+import me.ryanmood.gamemodechange.config.cache.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -68,10 +68,10 @@ public class RyUtil {
 
     public static String gamemodeToString(GameMode gamemode) {
         return gamemode.toString()
-                .replace("CREATIVE", Config.CREATIVE)
-                .replace("SURVIVAL", Config.SURVIVAL)
-                .replace("ADVENTURE", Config.ADVENTURE)
-                .replace("SPECTATOR", Config.SPECTATOR);
+                .replace("CREATIVE", Messages.CREATIVE)
+                .replace("SURVIVAL", Messages.SURVIVAL)
+                .replace("ADVENTURE", Messages.ADVENTURE)
+                .replace("SPECTATOR", Messages.SPECTATOR);
     }
 
     public static GameMode intToGamemode(int gamemode) {

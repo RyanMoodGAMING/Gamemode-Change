@@ -22,6 +22,7 @@ public class Messages {
     public static String INVALID_PLAYER;
     public static String INVALID_USAGE;
     public static String INVALID_GAMEMODE;
+    public static String CAN_CHANGE_OTHERS;
     public static String ANTI_CREATIVE_ERROR;
     public static String NOTIFY;
     public static String ANTI_CREATIVE_NOTIFY;
@@ -38,6 +39,7 @@ public class Messages {
         INVALID_PLAYER = Files.getMessagesConfig().getString("invalidPlayer");
         INVALID_USAGE = Files.getMessagesConfig().getString("invalidUsage");
         INVALID_GAMEMODE = Files.getMessagesConfig().getString("invalidGM");
+        CAN_CHANGE_OTHERS = Files.getMessagesConfig().getString("othersMSG");
         ANTI_CREATIVE_ERROR = Files.getMessagesConfig().getString("antiCreativeError");
         NOTIFY = Files.getMessagesConfig().getString("notify.main");
         ANTI_CREATIVE_NOTIFY = Files.getMessagesConfig().getString("notify.antiCreative");

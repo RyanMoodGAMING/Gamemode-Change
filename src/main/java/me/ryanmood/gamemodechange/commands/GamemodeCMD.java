@@ -1,6 +1,7 @@
 package me.ryanmood.gamemodechange.commands;
 
 import me.ryanmood.gamemodechange.config.cache.Config;
+import me.ryanmood.gamemodechange.config.cache.Messages;
 import me.ryanmood.gamemodechange.config.cache.Perms;
 import me.ryanmood.gamemodechange.utils.RyUtil;
 import org.bukkit.Bukkit;
@@ -29,13 +30,13 @@ public class GamemodeCMD extends Command {
 
         Player player = (Player) sender;
         if (!player.hasPermission(Perms.GAMEMODE)) {
-            RyUtil.sendPlayerMSG(player, Config.NO_PERMISSION
+            RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
                     .replace("%perm%", Perms.CREATIVE));
             return true;
         }
 
         if (args.length == 0) {
-            RyUtil.sendPlayerMSG(player, Config.INVALID_USAGE
+            RyUtil.sendPlayerMSG(player, Messages.INVALID_USAGE
                     .replace("%usage%", "/gamemode <GameMode> (Player)"));
             return true;
         }
@@ -44,7 +45,7 @@ public class GamemodeCMD extends Command {
                 || args[0].equalsIgnoreCase("survival") ||
                 args[0].equalsIgnoreCase("s")) {
             if (!player.hasPermission(Perms.SURVIVAL)) {
-                RyUtil.sendPlayerMSG(player, Config.NO_PERMISSION
+                RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
                         .replace("%perm%", Perms.SURVIVAL));
                 return true;
             }
@@ -57,7 +58,7 @@ public class GamemodeCMD extends Command {
                 || args[0].equalsIgnoreCase("creative") ||
                 args[0].equalsIgnoreCase("c")) {
             if (!player.hasPermission(Perms.CREATIVE)) {
-                RyUtil.sendPlayerMSG(player, Config.NO_PERMISSION
+                RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
                         .replace("%perm%", Perms.CREATIVE));
                 return true;
             }
@@ -70,7 +71,7 @@ public class GamemodeCMD extends Command {
                 || args[0].equalsIgnoreCase("adventure") ||
                 args[0].equalsIgnoreCase("a")) {
             if (!player.hasPermission(Perms.ADVENTURE)) {
-                RyUtil.sendPlayerMSG(player, Config.NO_PERMISSION
+                RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
                         .replace("%perm%", Perms.ADVENTURE));
                 return true;
             }
@@ -83,7 +84,7 @@ public class GamemodeCMD extends Command {
                 || args[0].equalsIgnoreCase("spectator") ||
                 args[0].equalsIgnoreCase("sp")) {
             if (!player.hasPermission(Perms.SPECTATOR)) {
-                RyUtil.sendPlayerMSG(player, Config.NO_PERMISSION
+                RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
                         .replace("%perm%", Perms.SPECTATOR));
                 return true;
             }
@@ -93,7 +94,7 @@ public class GamemodeCMD extends Command {
                 return changePlayer(player, GameMode.SPECTATOR);
             }
         } else {
-            RyUtil.sendPlayerMSG(player, Config.INVALID_GAMEMODE);
+            RyUtil.sendPlayerMSG(player, Messages.INVALID_GAMEMODE);
         }
 
         return true;
@@ -101,22 +102,22 @@ public class GamemodeCMD extends Command {
 
     private boolean changePlayer(Player player, GameMode gamemode) {
         player.setGameMode(gamemode);
-        RyUtil.sendPlayerMSG(player, Config.GAMEMODE_CHANGED
+        RyUtil.sendPlayerMSG(player, Messages.CHANGED_GM
                 .replace("%gamemode%", RyUtil.gamemodeToString(gamemode)));
         return true;
     }
     private boolean changeTarget(String targetArg, Player player, GameMode gamemode) {
         if (!player.hasPermission(Perms.OTHERS)) {
-            RyUtil.sendPlayerMSG(player, Config.NO_PERMISSION
+            RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
                     .replace("%perm%", Perms.OTHERS));
             return true;
         } else if (Bukkit.getPlayer(targetArg) == null) {
-            RyUtil.sendPlayerMSG(player, Config.PLAYER_NOT_FOUND);
+            RyUtil.sendPlayerMSG(player, Messages.INVALID_PLAYER);
             return true;
         }
         Player target = Bukkit.getPlayer(targetArg);
         target.setGameMode(gamemode);
-        RyUtil.sendPlayerMSG(player, Config.OTHER_PLAYER
+        RyUtil.sendPlayerMSG(player, Messages.CHANGED_OTHER
                 .replace("%target%", target.getName())
                 .replace("%gamemode%", RyUtil.gamemodeToString(gamemode)));
         return true;
