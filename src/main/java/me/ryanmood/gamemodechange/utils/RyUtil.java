@@ -57,7 +57,7 @@ public class RyUtil {
             // If perm isn't null
             for (Player target : Bukkit.getOnlinePlayers()) {
                 if (target.hasPermission(perm)) {
-                    target.sendMessage(message);
+                    target.sendMessage(translate(player, message));
                 }
             }
         } else {

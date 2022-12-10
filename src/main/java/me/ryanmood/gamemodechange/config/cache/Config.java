@@ -53,7 +53,7 @@ public class Config {
         // Anti-Creative
 
         ANTI_CREATIVE_ENABLED = Files.getConfig().getBoolean("antiCreative.enabled");
-        ANTI_CREATIVE_BLOCK_OP = Files.getConfig().getBoolean("antiCreative.blockOP");
+        ANTI_CREATIVE_BLOCK_OP = Files.getConfig().getBoolean("antiCreative.blockOp");
 
         // Notify
 

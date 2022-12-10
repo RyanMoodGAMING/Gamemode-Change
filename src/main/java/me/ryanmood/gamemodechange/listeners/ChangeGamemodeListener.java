@@ -32,8 +32,8 @@ public class ChangeGamemodeListener implements Listener {
                         .replace("%perm%", Perms.ANTI_CREATIVE_BYPASS));
                // RyUtil.sendBroadcast(player, Perms.ANTI_CREATIVE_NOTIFY, Messages.ANTI_CREATIVE_NOTIFY);
             } else if (Config.ANTI_CREATIVE_BLOCK_OP && newGamemode == GameMode.CREATIVE
-                    && player.isOp()
-                    && !player.hasPermission(Perms.ANTI_CREATIVE_BYPASS)) {
+                    && (player.isOp()
+                    || !player.hasPermission(Perms.ANTI_CREATIVE_BYPASS))) {
                 event.setCancelled(true);
                 RyUtil.sendPlayerMSG(player, Messages.ANTI_CREATIVE_ERROR
                         .replace("%perm%", Perms.ANTI_CREATIVE_BYPASS));
@@ -51,25 +51,25 @@ public class ChangeGamemodeListener implements Listener {
                     && Config.NOTIFY_CREATIVE) {
                 RyUtil.sendBroadcast(player, Perms.NOTIFY,
                         Messages.NOTIFY
-                                .replace("%target%", player.getName())
+                                .replace("%player%", player.getName())
                                 .replace("%gamemode%", RyUtil.gamemodeToString(newGamemode)));
             } else if (newGamemode == GameMode.SURVIVAL
                     && Config.NOTIFY_SURVIVAL) {
                 RyUtil.sendBroadcast(player, Perms.NOTIFY,
                         Messages.NOTIFY
-                                .replace("%target%", player.getName())
+                                .replace("%player%", player.getName())
                                 .replace("%gamemode%", RyUtil.gamemodeToString(newGamemode)));
             } else if (newGamemode == GameMode.ADVENTURE
                     && Config.NOTIFY_ADVENTURE) {
                 RyUtil.sendBroadcast(player, Perms.NOTIFY,
                         Messages.NOTIFY
-                                .replace("%target%", player.getName())
+                                .replace("%player%", player.getName())
                                 .replace("%gamemode%", RyUtil.gamemodeToString(newGamemode)));
             } else if (newGamemode == GameMode.SPECTATOR
                     && Config.NOTIFY_SPECTATOR) {
                 RyUtil.sendBroadcast(player, Perms.NOTIFY,
                         Messages.NOTIFY
-                                .replace("%target%", player.getName())
+                                .replace("%player%", player.getName())
                                 .replace("%gamemode%", RyUtil.gamemodeToString(newGamemode)));
             }
         }
