@@ -1,5 +1,6 @@
 package me.ryanmood.gamemodechange;
 
+import me.clip.placeholderapi.metrics.bukkit.Metrics;
 import me.ryanmood.gamemodechange.config.Files;
 import me.ryanmood.gamemodechange.listeners.ChangeGamemodeListener;
 import me.ryanmood.gamemodechange.listeners.DeathListener;
@@ -25,6 +26,8 @@ public final class GamemodeChange extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        //int pluginID = 0;
+        //Metrics metrics = new Metrics(this, pluginId);
 
         RyUtil.sendConsoleMSG(true, "&eLoading Gamemode Change...");
         RyUtil.sendConsoleMSG(true, "&eLoading commands...");
