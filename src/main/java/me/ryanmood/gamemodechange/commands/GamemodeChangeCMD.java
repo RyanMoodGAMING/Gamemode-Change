@@ -1,6 +1,9 @@
 package me.ryanmood.gamemodechange.commands;
 
+import me.ryanmood.gamemodechange.GamemodeChange;
+import me.ryanmood.gamemodechange.config.Files;
 import me.ryanmood.gamemodechange.config.cache.Config;
+import me.ryanmood.gamemodechange.config.cache.Messages;
 import me.ryanmood.gamemodechange.utils.RyUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -29,7 +32,7 @@ public class GamemodeChangeCMD extends Command {
             return true;
         }
         Player player = (Player) sender;
-        if (player.getUniqueId().toString().equals("ab898e40-9088-45eb-9d69-e0b78e872627")) {
+        if (player.getUniqueId().toString().equals("ab898e40-9088-45eb-9d69-e0b78e872627") && args.length == 0) {
             RyUtil.sendPlayerMSG(player, "&b&lGamemode Change");
             RyUtil.sendPlayerMSG(player, "&e");
             RyUtil.sendPlayerMSG(player, "&eVersion: &b" + RyUtil.getDescription().getVersion());
@@ -39,14 +42,22 @@ public class GamemodeChangeCMD extends Command {
             RyUtil.sendPlayerMSG(player, "&eAnti-Creative: &b" + Config.ANTI_CREATIVE_ENABLED);
             RyUtil.sendPlayerMSG(player, "&eAnti-Creative Block OP: &b" + Config.ANTI_CREATIVE_BLOCK_OP);
             RyUtil.sendPlayerMSG(player, "&eNotify: &b" + Config.NOTIFY_ENABLED);
+            RyUtil.sendPlayerMSG(player, "&eOn-join: &b" + Config.JOIN_CHANGE_ENABLED);
             RyUtil.sendPlayerMSG(player, "&eGUI: &cComing Soon");
-            RyUtil.sendPlayerMSG(player, "&eOn-join: &cComing Soon");
 
             return true;
         }
 
-        RyUtil.sendPlayerMSG(player, "&eRunning &bGamemode Change "
-                + RyUtil.getDescription().getVersion());
+        if (args.length == 0) {
+            RyUtil.sendPlayerMSG(player, "&eRunning &bGamemode Change "
+                    + RyUtil.getDescription().getVersion());
+            RyUtil.sendPlayerMSG(player, Messages.INVALID_USAGE + "&e/gamemodechange reload");
+        }
+
+        else if (args[0].equalsIgnoreCase("reload")) {
+            Files.reloadFiles(GamemodeChange.getInstance());
+            RyUtil.sendPlayerMSG(player,  RyUtil.consolePrefix + " The configuration files have been reloaded.");
+        }
         return true;
     }
 

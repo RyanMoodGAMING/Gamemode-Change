@@ -40,7 +40,7 @@ public class Perms {
         ANTI_CREATIVE_BYPASS = Files.getPermsConfig().getString("bypass.antiCreative");
         DEATH_BYPASS = Files.getPermsConfig().getString("bypass.death");
         NOTIFY_BYPASS = Files.getPermsConfig().getString("bypass.notify");
-        JOIN_BYPASS = Files.getPermsConfig().getString("bypass.join");
+        JOIN_BYPASS = Files.getPermsConfig().getString("bypass.joinChange");
         NOTIFY = Files.getPermsConfig().getString("notify");
         ANTI_CREATIVE_NOTIFY = Files.getPermsConfig().getString("notify.antiCreative");
 

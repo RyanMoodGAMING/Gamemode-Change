@@ -13,7 +13,7 @@ changedGM: "&a[!] Your gamemode has been changed to &b%gamemode%&a!"
 # This is the message that comes up when you have changed someone else's gamemode.
 # Use %gamemode% for the new gamemode.
 # Use %target% to show the targets name.
-changedOther: "&a[!] You have changed &b%target%&a\'s gamemode to &b%gamemode%&a."
+changedOther: "&a[!] You have changed &b%target%&a's gamemode to &b%gamemode%&a."
 
 # You can change what the %gamemode% results could be.
 creative: "CREATIVE"

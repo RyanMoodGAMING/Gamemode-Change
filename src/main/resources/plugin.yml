@@ -1,4 +1,4 @@
-name: Gamemode Change
+name: Gamemode-Change
 version: '${project.version}'
 main: me.ryanmood.gamemodechange.GamemodeChange
 api-version: 1.19

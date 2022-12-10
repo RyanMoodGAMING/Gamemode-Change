@@ -46,6 +46,7 @@ public class Files {
 
         Perms.loadConfig();
 
+        messagesFile = new File(gamemodeChange.getDataFolder(), "messages.yml");
         if (!messagesFile.exists()) {
             gamemodeChange.saveResource("messages.yml", false);
         }
