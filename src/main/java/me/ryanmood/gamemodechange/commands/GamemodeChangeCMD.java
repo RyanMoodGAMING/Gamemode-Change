@@ -51,12 +51,19 @@ public class GamemodeChangeCMD extends Command {
         if (args.length == 0) {
             RyUtil.sendPlayerMSG(player, "&eRunning &bGamemode Change "
                     + RyUtil.getDescription().getVersion());
-            RyUtil.sendPlayerMSG(player, Messages.INVALID_USAGE + "&e/gamemodechange reload");
+            if (player.hasPermission("gmchange.reload")) {
+                RyUtil.sendPlayerMSG(player, Messages.INVALID_USAGE + "&e/gamemodechange reload");
+            }
         }
 
         else if (args[0].equalsIgnoreCase("reload")) {
+            if (!player.hasPermission("gmchange.reload")) {
+                RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION);
+                return true;
+            }
+
             Files.reloadFiles(GamemodeChange.getInstance());
-            RyUtil.sendPlayerMSG(player,  RyUtil.consolePrefix + " The configuration files have been reloaded.");
+            RyUtil.sendPlayerMSG(player, RyUtil.consolePrefix + " The configuration files have been reloaded.");
         }
         return true;
     }
