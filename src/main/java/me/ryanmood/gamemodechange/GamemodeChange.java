@@ -26,8 +26,7 @@ public final class GamemodeChange extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        //int pluginID = 0;
-        //Metrics metrics = new Metrics(this, pluginId);
+        Metrics metrics = new Metrics(this, 17187);
 
         RyUtil.sendConsoleMSG(true, "&eLoading Gamemode Change...");
         RyUtil.sendConsoleMSG(true, "&eLoading commands...");
