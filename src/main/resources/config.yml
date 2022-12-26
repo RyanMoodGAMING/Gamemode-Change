@@ -1,7 +1,5 @@
 # Configuration file for Gamemode Change.
 # For support, please join my discord @ https://discord.gg/6QNEGPK3Fb
-# All messages can use colour codes.
-# All messages support PlaceholderAPI.
 
 # Should your gamemode get updated on join to the server?
 joinChange:
