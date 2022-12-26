@@ -1,14 +1,13 @@
 package me.ryanmood.gamemodechange;
 
-import me.clip.placeholderapi.metrics.bukkit.Metrics;
 import me.ryanmood.gamemodechange.config.Files;
 import me.ryanmood.gamemodechange.listeners.ChangeGamemodeListener;
 import me.ryanmood.gamemodechange.listeners.DeathListener;
 import me.ryanmood.gamemodechange.listeners.JoinListener;
 import me.ryanmood.gamemodechange.utils.CommandManager;
 import me.ryanmood.gamemodechange.utils.RyUtil;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /*
