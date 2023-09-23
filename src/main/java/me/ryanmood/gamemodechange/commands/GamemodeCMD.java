@@ -101,6 +101,10 @@ public class GamemodeCMD extends Command {
     }
 
     private boolean changePlayer(Player player, GameMode gamemode) {
+        if (player.getGameMode() == gamemode) {
+            RyUtil.sendPlayerMSG(player, Messages.ALREADY_GAMEMODE.replace("%target%", "Your"));
+            return true;
+        }
         player.setGameMode(gamemode);
         RyUtil.sendPlayerMSG(player, Messages.CHANGED_GM
                 .replace("%gamemode%", RyUtil.gamemodeToString(gamemode)));
@@ -116,6 +120,10 @@ public class GamemodeCMD extends Command {
             return true;
         }
         Player target = Bukkit.getPlayer(targetArg);
+        if (target.getGameMode() == gamemode) {
+            RyUtil.sendPlayerMSG(player, Messages.ALREADY_GAMEMODE.replace("%target%", target.getName()));
+            return true;
+        }
         target.setGameMode(gamemode);
         RyUtil.sendPlayerMSG(player, Messages.CHANGED_OTHER
                 .replace("%target%", target.getName())

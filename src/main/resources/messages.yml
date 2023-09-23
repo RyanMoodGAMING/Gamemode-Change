@@ -31,6 +31,10 @@ invalidUsage: "&c[!] Valid usage: &b%usage%"
 # This is the error message that will be displayed when an invalid gamemode is provided.
 invalidGM: "&c[!] Invalid gamemode. Gamemodes: Creative, Survival, Adventure or Spectator."
 
+# This is the error message that will be displayed when someone is set to the same gamemode.
+# Use %target% for the target's username, it will display 'Your'
+alreadyGM: "&c[!] &b%target% gamemode is already that %gamemode%."
+
 # This is the message that is displayed if hasOtherPermsMSG is enabled.
 othersMSG: "&7[!] You can change other players gamemodes."
 
@@ -45,4 +49,3 @@ antiCreativeError: "&c[!] You do not have permission to go into creative mode. Y
 notify:
   main: "&c[!] &b%player% &chas just changed there gamemode to &b%gamemode%&c."
   antiCreative: "&c[!] &b%player% &chas been blocked from going into creative. They have been kept as %gamemode%."
-

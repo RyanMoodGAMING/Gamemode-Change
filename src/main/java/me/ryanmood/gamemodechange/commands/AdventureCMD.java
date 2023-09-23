@@ -45,28 +45,12 @@ public class AdventureCMD extends Command {
         }
 
         if (args.length == 0) {
-            RyUtil.sendPlayerMSG(player, Messages.CHANGED_GM
-                    .replace("%gamemode%", Messages.ADVENTURE));
-            player.setGameMode(GameMode.ADVENTURE);
             if (Config.HAS_OTHER_PLAYER_ENABLED) {
                 RyUtil.sendPlayerMSG(player, Messages.CAN_CHANGE_OTHERS);
             }
-            return true;
+            return RyUtil.changePlayer(player, GameMode.ADVENTURE);
         } else if (args.length == 1) {
-            if (!player.hasPermission(Perms.OTHERS)) {
-                RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
-                        .replace("%perm%", Perms.OTHERS));
-                return true;
-            } else if (Bukkit.getPlayer(args[0]) == null) {
-                RyUtil.sendPlayerMSG(player, Messages.INVALID_PLAYER);
-                return true;
-            }
-            Player target = Bukkit.getPlayer(args[0]);
-            target.setGameMode(GameMode.ADVENTURE);
-            RyUtil.sendPlayerMSG(player, Messages.CHANGED_OTHER
-                    .replace("%target%", target.getName())
-                    .replace("%gamemode%", Messages.ADVENTURE));
-            return true;
+            return RyUtil.changeTarget(args[0], player, GameMode.ADVENTURE);
         }
 
         return true;

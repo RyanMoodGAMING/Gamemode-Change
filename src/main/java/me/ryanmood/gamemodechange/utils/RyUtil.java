@@ -8,6 +8,7 @@ For support please join my support discord @ https://discord.gg/6QNEGPK3Fb
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.ryanmood.gamemodechange.GamemodeChange;
 import me.ryanmood.gamemodechange.config.cache.Messages;
+import me.ryanmood.gamemodechange.config.cache.Perms;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -88,6 +89,37 @@ public class RyUtil {
             // 3 = Spectator
             return GameMode.SPECTATOR;
         }
+    }
+
+    public static boolean changePlayer(Player player, GameMode gamemode) {
+        if (player.getGameMode() == gamemode) {
+            RyUtil.sendPlayerMSG(player, Messages.ALREADY_GAMEMODE.replace("%target%", "Your"));
+            return true;
+        }
+        player.setGameMode(gamemode);
+        RyUtil.sendPlayerMSG(player, Messages.CHANGED_GM
+                .replace("%gamemode%", RyUtil.gamemodeToString(gamemode)));
+        return true;
+    }
+    public static boolean changeTarget(String targetArg, Player player, GameMode gamemode) {
+        if (!player.hasPermission(Perms.OTHERS)) {
+            RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
+                    .replace("%perm%", Perms.OTHERS));
+            return true;
+        } else if (Bukkit.getPlayer(targetArg) == null) {
+            RyUtil.sendPlayerMSG(player, Messages.INVALID_PLAYER);
+            return true;
+        }
+        Player target = Bukkit.getPlayer(targetArg);
+        if (target.getGameMode() == gamemode) {
+            RyUtil.sendPlayerMSG(player, Messages.ALREADY_GAMEMODE.replace("%target%", target.getName()));
+            return true;
+        }
+        target.setGameMode(gamemode);
+        RyUtil.sendPlayerMSG(player, Messages.CHANGED_OTHER
+                .replace("%target%", target.getName())
+                .replace("%gamemode%", RyUtil.gamemodeToString(gamemode)));
+        return true;
     }
 
     public static PluginDescriptionFile getDescription() {
