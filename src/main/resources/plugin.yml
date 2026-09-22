@@ -1,9 +1,9 @@
 name: Gamemode-Change
 version: '${project.version}'
 main: me.ryanmood.gamemodechange.GamemodeChange
-api-version: 1.19
+api-version: 1.21
 authors: [ RyanMood ]
 description: Change your own or someone else's gamemode.
-website: ryanmood.ml
+website: ryanmood.me
 softdepend:
   - PlaceholderAPI

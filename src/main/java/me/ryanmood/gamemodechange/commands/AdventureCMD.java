@@ -1,58 +1,52 @@
 package me.ryanmood.gamemodechange.commands;
 
-import me.ryanmood.gamemodechange.config.cache.Config;
-import me.ryanmood.gamemodechange.config.cache.Messages;
-import me.ryanmood.gamemodechange.config.cache.Perms;
-import me.ryanmood.gamemodechange.utils.RyUtil;
+import me.ryanmood.gamemodechange.GamemodeChange;
+import me.ryanmood.gamemodechange.config.Messages;
+import me.ryanmood.gamemodechange.utils.CommandInfo;
+import me.ryanmood.gamemodechange.utils.RyCMD;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
-/*
- * This software and its content is copyright of RyanMoodGAMING - © RyanMoodGAMING 2022. All rights reserved.
- * Any redistribution or reproduction of part or all of the contents in any form is prohibited other than the following:
- * you may print or download to a local hard disk extracts for your personal and non-commercial use only
- * you may copy the content to individual third parties for their personal use, but only if you acknowledge the website as the source of the material
- * You may not, except with our express written permission, distribute or commercially exploit the content. Nor may you transmit it or store it in any other website or other form of electronic retrieval system.
- */
+import java.util.ArrayList;
+import java.util.List;
 
-public class AdventureCMD extends Command {
+public class AdventureCMD extends RyCMD {
 
-    public AdventureCMD() {
-        super("adventure", "a", "gma");
-    }
-
-
-    @Override
-    public int compareTo(@NotNull Command o) {
-        return 0;
+    public AdventureCMD(GamemodeChange plugin) {
+        super(plugin, "adventure", "gma", "a");
+        this.setPlayerOnly(true);
+        this.setPermission(this.getPlugin().getPermsConfig().getADVENTURE());
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args) {
-        if (!(sender instanceof Player)) {
-            RyUtil.sendConsoleMSG(true, "&c&l(!) &cThis command must be ran by a player.");
-            return true;
+    public void onExecute(CommandInfo info) {
+        Player player = info.getPlayer();
+        String[] args = info.getArgs();
+        Player target = player;
+
+        if (args.length == 1 && player.hasPermission(this.getPlugin().getPermsConfig().getOTHERS())) {
+            if (Bukkit.getPlayer(args[0]) == null) {
+                this.sendPlayer(player, Messages.INVALID_USAGE.toString());
+                return;
+            } else target = Bukkit.getPlayer(args[0]);
         }
 
-        Player player = (Player) sender;
-        if (!player.hasPermission(Perms.GAMEMODE) && !player.hasPermission(Perms.ADVENTURE)) {
-            RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
-                    .replace("%perm%", Perms.GAMEMODE + " & " + Perms.ADVENTURE));
-            return true;
+        this.changeGamemode(target, player, GameMode.ADVENTURE);
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandInfo info) {
+        List<String> completors = new ArrayList<>();
+
+        switch (info.getArgs().length) {
+            case 0:
+                if (info.getSender().hasPermission(this.getPlugin().getPermsConfig().getOTHERS())) {
+                    Bukkit.getOnlinePlayers().forEach(player -> completors.add(player.getName()));
+                }
+                break;
         }
 
-        if (args.length == 0) {
-            if (Config.HAS_OTHER_PLAYER_ENABLED) {
-                RyUtil.sendPlayerMSG(player, Messages.CAN_CHANGE_OTHERS);
-            }
-            return RyUtil.changePlayer(player, GameMode.ADVENTURE);
-        } else if (args.length == 1) {
-            return RyUtil.changeTarget(args[0], player, GameMode.ADVENTURE);
-        }
-
-        return true;
+        return completors;
     }
 }

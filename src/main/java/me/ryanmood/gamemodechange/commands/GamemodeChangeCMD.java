@@ -1,75 +1,77 @@
 package me.ryanmood.gamemodechange.commands;
 
 import me.ryanmood.gamemodechange.GamemodeChange;
-import me.ryanmood.gamemodechange.config.Files;
-import me.ryanmood.gamemodechange.config.cache.Config;
-import me.ryanmood.gamemodechange.config.cache.Messages;
-import me.ryanmood.gamemodechange.utils.RyUtil;
+import me.ryanmood.gamemodechange.config.Messages;
+import me.ryanmood.gamemodechange.utils.CommandInfo;
+import me.ryanmood.gamemodechange.utils.RyCMD;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
-/*
- * This software and its content is copyright of RyanMoodGAMING - © RyanMoodGAMING 2022. All rights reserved.
- * Any redistribution or reproduction of part or all of the contents in any form is prohibited other than the following:
- * you may print or download to a local hard disk extracts for your personal and non-commercial use only
- * you may copy the content to individual third parties for their personal use, but only if you acknowledge the website as the source of the material
- * You may not, except with our express written permission, distribute or commercially exploit the content. Nor may you transmit it or store it in any other website or other form of electronic retrieval system.
- */
+import java.util.ArrayList;
+import java.util.List;
 
-public class GamemodeChangeCMD extends Command {
+public class GamemodeChangeCMD extends RyCMD {
 
-    public GamemodeChangeCMD() {
-        super("gamemodechange", "gmchange");
+    public GamemodeChangeCMD(GamemodeChange plugin) {
+        super(plugin, "gamemodechange", "gmchange");
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args) {
-        if (!(sender instanceof Player)) {
-            RyUtil.sendConsoleMSG(true, "&eRunning &bGamemode Change "
-                    + RyUtil.getDescription().getVersion());
-            return true;
-        }
-        Player player = (Player) sender;
-        if (player.getUniqueId().toString().equals("ab898e40-9088-45eb-9d69-e0b78e872627") && args.length == 0) {
-            RyUtil.sendPlayerMSG(player, "&b&lGamemode Change");
-            RyUtil.sendPlayerMSG(player, "&e");
-            RyUtil.sendPlayerMSG(player, "&eVersion: &b" + RyUtil.getDescription().getVersion());
-            RyUtil.sendPlayerMSG(player, "&eServer Version: &b" + Bukkit.getServer().getVersion());
-            RyUtil.sendPlayerMSG(player, "&eHas Other Player: &b" + Config.HAS_OTHER_PLAYER_ENABLED);
-            RyUtil.sendPlayerMSG(player, "&eDeath Change: &b" + Config.DEATH_CHANGE_ENABLED);
-            RyUtil.sendPlayerMSG(player, "&eAnti-Creative: &b" + Config.ANTI_CREATIVE_ENABLED);
-            RyUtil.sendPlayerMSG(player, "&eAnti-Creative Block OP: &b" + Config.ANTI_CREATIVE_BLOCK_OP);
-            RyUtil.sendPlayerMSG(player, "&eNotify: &b" + Config.NOTIFY_ENABLED);
-            RyUtil.sendPlayerMSG(player, "&eOn-join: &b" + Config.JOIN_CHANGE_ENABLED);
-            RyUtil.sendPlayerMSG(player, "&eGUI: &cComing Soon");
-
-            return true;
-        }
+    public void onExecute(CommandInfo info) {
+        CommandSender sender = info.getSender();
+        String[] args = info.getArgs();
 
         if (args.length == 0) {
-            RyUtil.sendPlayerMSG(player, "&eRunning &bGamemode Change "
-                    + RyUtil.getDescription().getVersion());
-            if (player.hasPermission("gmchange.reload")) {
-                RyUtil.sendPlayerMSG(player, Messages.INVALID_USAGE + "&e/gamemodechange reload");
+            this.sendSender(sender, "&eRunning &bGamemode Change " + this.getPlugin().getDescription().getVersion());
+
+            if (info.isPlayer()) {
+                if (info.getPlayer().getUniqueId().equals("ab898e40-9088-45eb-9d69-e0b78e872627")) this.sendSender(sender,
+                        "&b&lGamemode Change",
+                        "&e",
+                        "&eVersion: &b" + this.getPlugin().getDescription().getVersion(),
+                        "&eServer Version: &b" + Bukkit.getServer().getVersion(),
+                        "&eHas Other Player: &b" + this.getPlugin().getConfiguration().isOTHER_PERMS_ENABLED(),
+                        "&eDeath Change: &b" + this.getPlugin().getConfiguration().isDEATH_CHANGE_ENABLED(),
+                        "&eAnti-Creative: &b" + this.getPlugin().getConfiguration().isANTI_CREATIVE_ENABLED(),
+                        "&eAnti-Creative Block OP: &b" + this.getPlugin().getConfiguration().isANTI_CREATIVE_BLOCK_OP(),
+                        "&eNotify: &b" + this.getPlugin().getConfiguration().isNOTIFY_ENABLED(),
+                        "&eOn-join: &b" + this.getPlugin().getConfiguration().isJOIN_CHANGE_ENABLED(),
+                        "&e",
+                        "&b&lGamemode Change"
+                );
             }
+            return;
         }
 
-        else if (args[0].equalsIgnoreCase("reload")) {
-            if (!player.hasPermission("gmchange.reload")) {
-                RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION);
-                return true;
-            }
+        switch (args[0]) {
+            case "reload":
+                if (!sender.hasPermission("gmchange.reload")) {
+                    this.sendSender(sender, Messages.NO_PERMISSION.toString().replaceAll("%perm%", "gmchange.reload"));
+                    return;
+                }
 
-            Files.reloadFiles(GamemodeChange.getInstance());
-            RyUtil.sendPlayerMSG(player, RyUtil.consolePrefix + " The configuration files have been reloaded.");
+                this.getPlugin().getConfiguration().reloadFile();
+                this.getPlugin().getMessageConfig().reloadFile();
+                this.getPlugin().getPermsConfig().reloadFile();
+                this.sendSender(sender, "%prefix% &aThe configuration files have been reloaded.");
+                return;
+            default:
+                this.sendSender(sender, Messages.INVALID_USAGE.toString().replaceAll("%usage%", "/" + info.getLabel() + " reload"));
+                return;
         }
-        return true;
     }
 
     @Override
-    public int compareTo(@NotNull Command o) {
-        return 0;
+    public List<String> onTabComplete(CommandInfo info) {
+        List<String> completors = new ArrayList<>();
+
+        switch (info.getArgs().length) {
+            case 0:
+                if (info.getSender().hasPermission("gmchange.reload")) {
+                    completors.add("reload");
+                }
+        }
+
+        return completors;
     }
 }

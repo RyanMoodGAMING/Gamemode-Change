@@ -1,134 +1,90 @@
 package me.ryanmood.gamemodechange.commands;
 
-import me.ryanmood.gamemodechange.config.cache.Config;
-import me.ryanmood.gamemodechange.config.cache.Messages;
-import me.ryanmood.gamemodechange.config.cache.Perms;
-import me.ryanmood.gamemodechange.utils.RyUtil;
+import me.ryanmood.gamemodechange.GamemodeChange;
+import me.ryanmood.gamemodechange.config.Messages;
+import me.ryanmood.gamemodechange.utils.CommandInfo;
+import me.ryanmood.gamemodechange.utils.RyCMD;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
-public class GamemodeCMD extends Command {
+import java.util.ArrayList;
+import java.util.List;
 
-    public GamemodeCMD() {
-        super("gamemode", "gm");
+public class GamemodeCMD extends RyCMD {
+
+    public GamemodeCMD(GamemodeChange plugin) {
+        super(plugin, "gamemode", "gm");
+        this.setPlayerOnly(true);
+        this.setPermission(this.getPlugin().getPermsConfig().getGAMEMODE());
     }
 
     @Override
-    public int compareTo(@NotNull Command o) {
-        return 0;
-    }
-
-    @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args) {
-        if (!(sender instanceof Player)) {
-            RyUtil.sendConsoleMSG(true, "&c&l(!) &cThis command must be ran by a player.");
-            return true;
-        }
-
-        Player player = (Player) sender;
-        if (!player.hasPermission(Perms.GAMEMODE)) {
-            RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
-                    .replace("%perm%", Perms.CREATIVE));
-            return true;
-        }
+    public void onExecute(CommandInfo info) {
+        Player player = info.getPlayer();
+        String[] args = info.getArgs();
 
         if (args.length == 0) {
-            RyUtil.sendPlayerMSG(player, Messages.INVALID_USAGE
-                    .replace("%usage%", "/gamemode <GameMode> (Player)"));
-            return true;
+            this.sendPlayer(player, Messages.INVALID_USAGE.toString()
+                    .replaceAll("%usage%", "/" + info.getLabel() + "<gamemode> (player)"));
+
+            return;
+        }
+        Player target = player;
+
+        if (args.length == 2 && player.hasPermission(this.getPlugin().getPermsConfig().getOTHERS())) {
+            if (Bukkit.getPlayer(args[1]) == null) {
+                this.sendPlayer(player, Messages.INVALID_USAGE.toString());
+                return;
+            } else target = Bukkit.getPlayer(args[1]);
         }
 
-        if (args[0].equalsIgnoreCase("0")
-                || args[0].equalsIgnoreCase("survival") ||
-                args[0].equalsIgnoreCase("s")) {
-            if (!player.hasPermission(Perms.SURVIVAL)) {
-                RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
-                        .replace("%perm%", Perms.SURVIVAL));
-                return true;
-            }
-            if (args.length == 2) {
-               return changeTarget(args[1], player, GameMode.SURVIVAL);
-            } else {
-                return changePlayer(player, GameMode.SURVIVAL);
-            }
-        } else if (args[0].equalsIgnoreCase("1")
-                || args[0].equalsIgnoreCase("creative") ||
-                args[0].equalsIgnoreCase("c")) {
-            if (!player.hasPermission(Perms.CREATIVE)) {
-                RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
-                        .replace("%perm%", Perms.CREATIVE));
-                return true;
-            }
-            if (args.length == 2) {
-                return changeTarget(args[1], player, GameMode.CREATIVE);
-            } else {
-                return changePlayer(player, GameMode.CREATIVE);
-            }
-        } else if (args[0].equalsIgnoreCase("2")
-                || args[0].equalsIgnoreCase("adventure") ||
-                args[0].equalsIgnoreCase("a")) {
-            if (!player.hasPermission(Perms.ADVENTURE)) {
-                RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
-                        .replace("%perm%", Perms.ADVENTURE));
-                return true;
-            }
-            if (args.length == 2) {
-                return changeTarget(args[1], player, GameMode.ADVENTURE);
-            } else {
-                return changePlayer(player, GameMode.ADVENTURE);
-            }
-        } else if (args[0].equalsIgnoreCase("3")
-                || args[0].equalsIgnoreCase("spectator") ||
-                args[0].equalsIgnoreCase("sp")) {
-            if (!player.hasPermission(Perms.SPECTATOR)) {
-                RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
-                        .replace("%perm%", Perms.SPECTATOR));
-                return true;
-            }
-            if (args.length == 2) {
-                return changeTarget(args[1], player, GameMode.SPECTATOR);
-            } else {
-                return changePlayer(player, GameMode.SPECTATOR);
-            }
-        } else {
-            RyUtil.sendPlayerMSG(player, Messages.INVALID_GAMEMODE);
+        switch (args[0].toLowerCase()) {
+            case "survival":
+            case "0":
+            case "s":
+                this.changeGamemode(target, player, GameMode.SURVIVAL);
+                break;
+            case "creative":
+            case "1":
+            case "c":
+                this.changeGamemode(target, player, GameMode.CREATIVE);
+                break;
+            case "adventure":
+            case "2":
+            case "a":
+                this.changeGamemode(target, player, GameMode.ADVENTURE);
+                break;
+            case "spectator":
+            case "3":
+            case "sp":
+                this.changeGamemode(target, player, GameMode.SPECTATOR);
+                break;
         }
-
-        return true;
     }
 
-    private boolean changePlayer(Player player, GameMode gamemode) {
-        if (player.getGameMode() == gamemode) {
-            RyUtil.sendPlayerMSG(player, Messages.ALREADY_GAMEMODE.replace("%target%", "Your"));
-            return true;
-        }
-        player.setGameMode(gamemode);
-        RyUtil.sendPlayerMSG(player, Messages.CHANGED_GM
-                .replace("%gamemode%", RyUtil.gamemodeToString(gamemode)));
-        return true;
-    }
-    private boolean changeTarget(String targetArg, Player player, GameMode gamemode) {
-        if (!player.hasPermission(Perms.OTHERS)) {
-            RyUtil.sendPlayerMSG(player, Messages.NO_PERMISSION
-                    .replace("%perm%", Perms.OTHERS));
-            return true;
-        } else if (Bukkit.getPlayer(targetArg) == null) {
-            RyUtil.sendPlayerMSG(player, Messages.INVALID_PLAYER);
-            return true;
-        }
-        Player target = Bukkit.getPlayer(targetArg);
-        if (target.getGameMode() == gamemode) {
-            RyUtil.sendPlayerMSG(player, Messages.ALREADY_GAMEMODE.replace("%target%", target.getName()));
-            return true;
-        }
-        target.setGameMode(gamemode);
-        RyUtil.sendPlayerMSG(player, Messages.CHANGED_OTHER
-                .replace("%target%", target.getName())
-                .replace("%gamemode%", RyUtil.gamemodeToString(gamemode)));
-        return true;
-    }
+    @Override
+    public List<String> onTabComplete(CommandInfo info) {
+        List<String> completors = new ArrayList<>();
 
+        switch (info.getArgs().length) {
+            case 0:
+                completors.add("creative");
+                completors.add("1");
+                completors.add("survival");
+                completors.add("0");
+                completors.add("adventure");
+                completors.add("2");
+                completors.add("spectator");
+                completors.add("3");
+                break;
+            case 1:
+                if (info.getSender().hasPermission(this.getPlugin().getPermsConfig().getOTHERS())) {
+                    Bukkit.getOnlinePlayers().forEach(player -> completors.add(player.getName()));
+                }
+                break;
+        }
+
+        return completors;
+    }
 }
