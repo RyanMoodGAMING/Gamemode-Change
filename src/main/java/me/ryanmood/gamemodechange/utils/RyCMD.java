@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.ryanmood.gamemodechange.GamemodeChange;
 import me.ryanmood.gamemodechange.config.Messages;
+import me.ryanmood.ryutils.spigot.RyMessageUtil;
 import me.ryanmood.ryutils.spigot.commands.RyCommand;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
@@ -103,6 +104,16 @@ public abstract class RyCMD extends RyCommand {
     public void changeGamemode(Player target, Player player, GameMode gamemode) {
         if (!player.hasPermission(this.getGamemodePerm(gamemode))) {
             this.sendPlayer(player, Messages.NO_PERMISSION.toString().replaceAll("%perm%", this.getGamemodePerm(gamemode)));
+            return;
+        }
+
+        if (target.getGameMode() == gamemode) {
+            if (target == player) this.sendPlayer(player, Messages.ALREADY_GAMEMODE.toString()
+                    .replaceAll("%gamemode%", this.getGamemodeString(gamemode))
+                    .replaceAll("%player%", "Your"));
+            else this.sendPlayer(player, Messages.ALREADY_GAMEMODE.toString()
+                    .replaceAll("%gamemode%", this.getGamemodeString(gamemode))
+                    .replaceAll("%player%", target.getName()));
             return;
         }
 

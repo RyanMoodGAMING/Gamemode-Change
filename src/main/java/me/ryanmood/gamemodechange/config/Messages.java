@@ -21,6 +21,7 @@ public enum Messages {
     INVALID_PLAYER("invalidPlayer", "&c[!] The player provided is not found."),
     INVALID_USAGE("invalidUsage", "&c[!] Valid usage: &b%usage%"),
     INVALID_GAMEMODE("invalidGM", "&c[!] Invalid gamemode. Gamemodes: Creative, Survival, Adventure or Spectator."),
+    ALREADY_GAMEMODE("alreadyGM", "&c[!] &b%target% gamemode is already that %gamemode%."),
     OTHERS("othersMSG", "&7[!] You can change other players gamemodes."),
     ANTI_CREATIVE_ERROR("antiCreativeError", "&c[!] You do not have permission to go into creative mode. You need the bypass permission (&b%perm%&c)."),
     NOTIFY_MAIN("notify.main", "&c[!] &b%player% &chas just changed there gamemode to &b%gamemode%&c."),
@@ -45,11 +46,11 @@ public enum Messages {
     }
 
     public String toString() {
-        return config.getString(this.key);
+        return config.getString(this.key, this.message);
     }
 
     public List<String> toStringList() {
-        return config.getStringList(this.key);
+        return config.getStringList(this.key, this.messages);
     }
 
 }
