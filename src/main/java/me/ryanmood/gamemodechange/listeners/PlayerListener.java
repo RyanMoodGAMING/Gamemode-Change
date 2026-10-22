@@ -1,6 +1,5 @@
 package me.ryanmood.gamemodechange.listeners;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import me.ryanmood.gamemodechange.GamemodeChange;
 import me.ryanmood.gamemodechange.config.Configuration;
 import me.ryanmood.gamemodechange.config.Messages;
