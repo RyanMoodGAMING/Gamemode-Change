@@ -3,6 +3,7 @@ package me.ryanmood.gamemodechange;
 import lombok.Getter;
 import me.ryanmood.gamemodechange.commands.*;
 import me.ryanmood.gamemodechange.config.Configuration;
+import me.ryanmood.gamemodechange.config.Messages;
 import me.ryanmood.gamemodechange.config.MessagesConfig;
 import me.ryanmood.gamemodechange.config.PermsConfig;
 import me.ryanmood.gamemodechange.listeners.PlayerListener;
@@ -30,6 +31,7 @@ public final class GamemodeChange extends JavaPlugin {
         this.configuration = new Configuration(this);
         this.permsConfig = new PermsConfig(this);
         this.messageConfig = new MessagesConfig(this);
+        Messages.loadMessagesFromConfig();
 
         this.getRySpigot().getCommandManager().register(
                 new GamemodeChangeCMD(this),

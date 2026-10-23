@@ -53,4 +53,15 @@ public enum Messages {
         return config.getStringList(this.key, this.messages);
     }
 
+    public static void loadMessagesFromConfig() {
+        Arrays.stream(Messages.values()).forEach(message -> {
+            if (config.getConfig().get(message.getKey()) == null) {
+                if (message.getMessage() != null) config.getConfig().set(message.getKey(), message.getMessage());
+                else if (message.getMessages() != null) config.getConfig().set(message.getKey(), message.getMessages());
+            }
+        });
+
+        config.saveFile();
+    }
+
 }
