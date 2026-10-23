@@ -40,6 +40,32 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <relocations>
+                                <relocation>
+                                    <pattern>me.ryanmood.ryutils.spigot</pattern>
+                                    <shadedPattern>me.ryanmood.gmchnage.utils</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.bstats</pattern>
+                                    <shadedPattern>me.ryanmood.gmchange.utils</shadedPattern>
+                                </relocation>
+                            </relocations>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF:**</exclude>
+                                        <!--> RyUtils <-->
+                                        <exclude>me/ryanmood/ryutils/spigot/data/**</exclude>
+                                        <exclude>me/ryanmood/ryutils/spigot/lib/mongodb/**</exclude>
+                                        <exclude>me/ryanmood/ryutils/spigot/discord/**</exclude>
+                                        <!--> No idea where bson comes from, but it breaks Wumpus's thing <-->
+                                        <exclude>org/bson/**</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -102,7 +128,16 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.38</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- BStats -->
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.2.1</version>
             <scope>compile</scope>
         </dependency>
+
     </dependencies>
 </project>

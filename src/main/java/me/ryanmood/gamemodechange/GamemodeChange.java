@@ -7,9 +7,13 @@ import me.ryanmood.gamemodechange.config.Messages;
 import me.ryanmood.gamemodechange.config.MessagesConfig;
 import me.ryanmood.gamemodechange.config.PermsConfig;
 import me.ryanmood.gamemodechange.listeners.PlayerListener;
+import me.ryanmood.gamemodechange.utils.UpdateChecker;
 import me.ryanmood.ryutils.spigot.RyMessageUtil;
 import me.ryanmood.ryutils.spigot.RySpigot;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.net.HttpURLConnection;
 
 @Getter
 public final class GamemodeChange extends JavaPlugin {
@@ -47,6 +51,8 @@ public final class GamemodeChange extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
 
         this.messageUtil.sendConsole(true, "&aSuccessfully loaded Gamemode Change");
+        new UpdateChecker(this).updateCheck();
+        Metrics metrics = new Metrics(this, 17187);
     }
 
     @Override
